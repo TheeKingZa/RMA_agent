@@ -1,0 +1,136 @@
+/* theme.css
+   (Comment) Main stylesheet for the agent profile site.
+   Replace or tweak colors & fonts if needed.
+*/
+
+/* ---------- Color palette (RMA-like) ---------- */
+:root{
+  --rma-blue: #0a67a3;      /* main blue */
+  --rma-light-blue: #6caef0;
+  --rma-orange: #f28f1e;    /* accent orange */
+  --text-dark: #0b1b2b;
+  --muted: #6b7785;
+  --bg: #f7fbff;
+  --card-bg: #ffffff;
+}
+
+/* ---------- Base & layout ---------- */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color:var(--text-dark);
+  background: linear-gradient(180deg,var(--bg),#ffffff 60%);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+}
+
+/* Container centers content and adds padding */
+.container{
+  max-width:1100px;
+  margin:0 auto;
+  padding:24px;
+}
+
+/* ---------- Hero section ---------- */
+.hero{
+  padding:28px 0;
+  border-bottom:4px solid rgba(10,103,163,0.06);
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns: 1fr 360px;
+  gap:20px;
+  align-items:center;
+}
+
+/* left side */
+.hero-left h1{
+  margin:0 0 8px 0;
+  font-size:28px;
+  color:var(--rma-blue);
+}
+.agent-role{ color:var(--muted); margin:0 0 12px 0; font-weight:600; }
+.agent-info{ list-style:none; padding:0; margin:0 0 16px 0; color:var(--muted) }
+.agent-info li{ margin:6px 0; }
+
+/* buttons */
+.cta-row{ display:flex; gap:12px; align-items:center; margin-top:6px; }
+.btn{
+  display:inline-block;
+  padding:10px 14px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:600;
+  font-size:14px;
+  cursor:pointer;
+  border:0;
+}
+.btn-primary{
+  background: linear-gradient(90deg,var(--rma-blue),#0078c6);
+  color:white;
+  box-shadow: 0 6px 18px rgba(10,103,163,0.14);
+}
+.btn-secondary{
+  background:transparent;
+  border:1px solid rgba(10,103,163,0.12);
+  color:var(--rma-blue);
+}
+
+/* right side: photo */
+.hero-right img{
+  width:100%;
+  max-width:360px;
+  height:auto;
+  border-radius:12px;
+  border:6px solid var(--rma-light-blue);
+  display:block;
+}
+
+/* ---------- Cards for content ---------- */
+.card{
+  background:var(--card-bg);
+  border-radius:12px;
+  padding:18px;
+  margin:18px 0;
+  box-shadow: 0 6px 20px rgba(11,27,43,0.06);
+}
+h2{ margin-top:0; color:var(--rma-blue) }
+.bullets{ margin:10px 0 0 18px; color:var(--muted) }
+
+/* small boxed agent info reused in the document */
+.agent-box{
+  margin-top:14px;
+  background:linear-gradient(180deg, rgba(242,143,30,0.06), rgba(10,103,163,0.02));
+  padding:12px;
+  border-radius:10px;
+  border-left:4px solid var(--rma-orange);
+}
+
+/* contact area */
+.contact-cta{ display:flex; gap:12px; margin-top:12px; align-items:center; }
+.btn-outline{
+  background:transparent; border:1px solid rgba(10,103,163,0.12); padding:10px 12px; border-radius:8px; color:var(--rma-blue);
+}
+
+/* footer small note */
+.small-note{ color:var(--muted); font-size:13px; margin-top:12px; }
+
+/* ---------- Small screens responsiveness ---------- */
+@media (max-width:880px){
+  .hero-grid{ grid-template-columns: 1fr; text-align:left; }
+  .hero-right{ order:-1; margin-bottom:12px; }
+  .hero-right img{ 
+    max-width:50%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  .container{ padding:16px; }
+}
+
+/* ---------- Utility classes for animations (start hidden) ---------- */
+.fade-in{ opacity:0; transform: translateY(24px); transition: all 600ms cubic-bezier(.2,.9,.2,1); }
+.fade-in.visible{ opacity:1; transform:none; }

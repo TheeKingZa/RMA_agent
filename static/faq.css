@@ -1,0 +1,76 @@
+/* =========================
+   FAQ PAGE STYLING
+   ========================= */
+.hero-left h1,
+.hero-left p {
+    color: var(--rma-orange);
+}
+
+
+.btn-outline {
+    
+    border: 1px solid var(--rma-blue);
+    color: var(--rma-blue);
+    background-color: var(--bg);
+}
+
+.btn-outline:hover {
+    border: 1px solid var(--rma-blue);
+    color: var(--bg);
+    background-color: var(--rma-blue);
+}
+
+
+.small-hero {
+  padding: 30px 0;
+  text-align: center;
+  background: linear-gradient(90deg, var(--rma-blue), #0078c6);
+  color: white;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(10, 103, 163, 0.1);
+  margin-bottom: 10px;
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--rma-blue);
+  padding: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.faq-question:hover {
+  background: rgba(10, 103, 163, 0.06);
+}
+
+.faq-question.active {
+  color: var(--rma-orange);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding: 0 12px;
+}
+
+.faq-answer p {
+  color: var(--bg);
+  line-height: 1.5;
+  padding: 8px 0;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .faq-question {
+    font-size: 0.95rem;
+  }
+}
+

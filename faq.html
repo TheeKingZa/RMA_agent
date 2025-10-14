@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ — RMA Agent Profile</title>
+  <link rel="stylesheet" href="./static/theme.css" />
+    <link rel="stylesheet" href="static/partners.css" />
+    <link rel="stylesheet" href="static/faq.css" />
+    <link rel="stylesheet" href="static/nav_faq.css" />
+    <!-- (Comment) Link to the main stylesheet -->
+</head>
+<body>
+  <!-- Header -->
+  <header class="hero small-hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <h1>Frequently Asked Questions</h1>
+        <p class="agent-role">Your RMA Agent Answers</p>
+    </div>
+</div>
+  </header>
+
+  <!-- FAQ Section -->
+  <main class="container">
+    <section class="card fade-in" id="faq">
+      <h2>General Questions</h2>
+
+      <div class="faq-item">
+        <button class="faq-question">What is the RMA Consolidated Funeral Cover?</button>
+        <div class="faq-answer">
+            <p>It’s a funeral policy that allows clients to combine multiple funeral plans under one comprehensive policy, reducing costs and simplifying cover management.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <button class="faq-question">Who can be covered under this policy?</button>
+        <div class="faq-answer">
+            <p>Up to 22 individuals, including family members and extended relatives, can be covered under a single policy.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+          <button class="faq-question">Do I need a medical examination?</button>
+          <div class="faq-answer">
+              <p>No. RMA’s funeral policy does not require any medical examination for approval.</p>
+            </div>
+        </div>
+        
+      <div class="faq-item">
+        <button class="faq-question">What are Value-Added Services?</button>
+        <div class="faq-answer">
+          <p>Value-added services include options like airtime benefits, groceries, wills and testaments, trauma counseling, and more — available at an additional fee.</p>
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <button class="faq-question">How do I get a quote or more information?</button>
+        <div class="faq-answer">
+            <p>You can contact our agent directly by emailing <a href="mailto:proceedingmc@gmail.com">proceedingmc@gmail.com</a> or calling <strong>079 311 9969</strong>.</p>
+        </div>
+    </div>
+</section>
+<div>
+    <a href="index.html" class="btn btn-outline">← Back to Home</a>
+</div>
+</main>
+
+
+
+
+
+<!-- Contact / Footer -->
+    <section class="card fade-in" id="contact">
+      <h2>Contact & Get a Quote</h2>
+      <p>Call RMA contact centre on <strong>0860 222 132</strong> or email <a href="mailto:contactcentre@randmutual.co.za">contactcentre@randmutual.co.za</a>.</p>
+
+      <div class="contact-cta">
+        <a class="btn btn-primary" href="mailto:proceedingmc@gmail.com">Email Agent</a>
+        <a class="btn btn-outline" href="tel:0860222132">Call Contact Centre</a>
+      </div>
+
+      <p class="small-note">Pule Mathkha © RMA Life Assurance Company Ltd. </p>
+    </section>
+
+
+<script src="animation.js" defer></script>
+  <script>
+    // Simple accordion toggle for FAQ answers
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const answer = button.nextElementSibling;
+        button.classList.toggle('active');
+        answer.style.maxHeight = answer.style.maxHeight ? null : answer.scrollHeight + 'px';
+      });
+    });
+    </script>
+</body>
+</html>
