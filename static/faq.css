@@ -62,7 +62,7 @@
 }
 
 .faq-answer p {
-  color: var(--rma-blue);
+  color: var(--bg);
   line-height: 1.5;
   padding: 8px 0;
 }
