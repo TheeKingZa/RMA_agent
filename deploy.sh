@@ -1,6 +1,6 @@
 #!/bin/bash
 # =======================================================
-# deploy.sh — Force-sync gh-pages with master branch
+# deploy.sh — Deploys site by syncing gh-pages with master
 # Author: Pule Mathikha
 # =======================================================
 
@@ -20,30 +20,36 @@ if [ ! -d ".git" ]; then
   exit 1
 fi
 
+# ---------- STEP 2: SHOW STATUS ----------
 echo -e "${BLUE}🔍 Checking repository status...${NC}"
 git status -s
 
-# ---------- STEP 2: CHECK FOR UNCOMMITTED CHANGES ----------
-if ! git diff-index --quiet HEAD --; then
-  echo -e "${YELLOW}⚠️  You have uncommitted changes.${NC}"
-  echo -e "${BLUE}💾 Committing them automatically...${NC}"
-  git add .
-  git commit -m "Auto-commit before deploy on $(date '+%Y-%m-%d %H:%M:%S')" >/dev/null 2>&1
-  echo -e "${GREEN}✅ Changes committed.${NC}"
+# ---------- STEP 3: ADD & COMMIT CHANGES ----------
+echo -e "${YELLOW}✏️  Preparing to commit your latest changes...${NC}"
+git add .
+
+# Ask for a custom commit message
+read -p "📝 Enter commit message: " COMMIT_MSG
+
+# If message empty, set default
+if [ -z "$COMMIT_MSG" ]; then
+  COMMIT_MSG="Auto-deploy update on $(date '+%Y-%m-%d %H:%M:%S')"
 fi
 
-# ---------- STEP 3: ENSURE MASTER EXISTS ----------
+git commit -m "$COMMIT_MSG" >/dev/null 2>&1 || echo -e "${YELLOW}⚠️  No new changes to commit.${NC}"
+
+# ---------- STEP 4: ENSURE MASTER BRANCH EXISTS ----------
 if ! git show-ref --quiet refs/heads/master; then
   echo -e "${YELLOW}⚙️  Creating 'master' branch...${NC}"
   git branch -M master
 fi
 
-# ---------- STEP 4: PUSH MASTER (FORCE) ----------
-echo -e "${BLUE}⬆️  Pushing master branch to remote (force)...${NC}"
+# ---------- STEP 5: PUSH MASTER (FORCE) ----------
+echo -e "${BLUE}⬆️  Pushing master branch to remote...${NC}"
 git push origin master --force >/dev/null 2>&1 || { echo -e "${RED}❌ Failed to push master.${NC}"; exit 1; }
 echo -e "${GREEN}✅ Master branch pushed successfully.${NC}"
 
-# ---------- STEP 5: CHECK OR CREATE gh-pages ----------
+# ---------- STEP 6: CHECK OR CREATE gh-pages ----------
 if git show-ref --quiet refs/heads/gh-pages; then
   echo -e "${GREEN}✅ Found 'gh-pages' branch.${NC}"
 else
@@ -51,40 +57,40 @@ else
   git branch gh-pages
 fi
 
-# ---------- STEP 6: TEMPORARY COPY ----------
+# ---------- STEP 7: TEMPORARY COPY ----------
 TEMP_DIR=$(mktemp -d)
 echo -e "${BLUE}📦 Copying project files to temporary folder...${NC}"
 rsync -av --exclude='.git' --exclude='node_modules' ./ "$TEMP_DIR" >/dev/null 2>&1
 
-# ---------- STEP 7: SWITCH TO gh-pages ----------
+# ---------- STEP 8: SWITCH TO gh-pages ----------
 echo -e "${BLUE}🌿 Switching to gh-pages...${NC}"
 git checkout gh-pages >/dev/null 2>&1 || { echo -e "${RED}❌ Could not switch to gh-pages.${NC}"; exit 1; }
 
-# ---------- STEP 8: CLEAR OLD FILES (KEEP .git) ----------
+# ---------- STEP 9: CLEAR OLD FILES SAFELY ----------
 echo -e "${YELLOW}🧹 Clearing old gh-pages files (keeping .git)...${NC}"
 find . -mindepth 1 ! -regex '^./\.git\(/.*\)?' -delete
 
-# ---------- STEP 9: COPY MASTER FILES ----------
-echo -e "${BLUE}📂 Copying files from master branch...${NC}"
+# ---------- STEP 10: COPY MASTER FILES ----------
+echo -e "${BLUE}📂 Copying new files from master...${NC}"
 cp -r "$TEMP_DIR"/* ./
 
-# ---------- STEP 10: COMMIT & PUSH TO gh-pages ----------
+# ---------- STEP 11: COMMIT & PUSH TO gh-pages ----------
 echo -e "${BLUE}📝 Committing gh-pages updates...${NC}"
 git add .
-git commit -m "🚀 Deploy from master on $(date '+%Y-%m-%d %H:%M:%S')" >/dev/null 2>&1 || echo -e "${YELLOW}⚠️  No new changes to commit.${NC}"
+git commit -m "🚀 Deploy: $COMMIT_MSG" >/dev/null 2>&1 || echo -e "${YELLOW}⚠️  No new gh-pages changes to commit.${NC}"
 
 echo -e "${BLUE}⬆️  Pushing gh-pages branch (force)...${NC}"
 git push origin gh-pages --force >/dev/null 2>&1 || { echo -e "${RED}❌ Push to gh-pages failed!${NC}"; exit 1; }
 
-# ---------- STEP 11: CLEANUP ----------
-echo -e "${BLUE}🧽 Cleaning up...${NC}"
+# ---------- STEP 12: CLEANUP ----------
+echo -e "${BLUE}🧽 Cleaning up temporary files...${NC}"
 rm -rf "$TEMP_DIR"
 
-# ---------- STEP 12: SWITCH BACK ----------
+# ---------- STEP 13: RETURN TO MASTER ----------
 echo -e "${BLUE}↩️  Returning to master branch...${NC}"
 git checkout master >/dev/null 2>&1
 
-# ---------- STEP 13: DONE ----------
+# ---------- STEP 14: DONE ----------
 echo -e "${GREEN}✅ Deployment complete!${NC}"
 echo -e "${BLUE}🌐 Live site: ${YELLOW}${LIVE_URL}${NC}"
 echo -e "${BLUE}📦 Repository: ${YELLOW}${REPO_URL}${NC}"
