@@ -1,0 +1,41 @@
+/* ================================
+   Government Banner & Logos
+   ================================ */
+.gov-banner {
+  background: linear-gradient(90deg, #002f6c, #0057a0);
+  color: #fff;
+  text-align: center;
+  font-weight: 600;
+  padding: 10px 0;
+  letter-spacing: 0.5px;
+}
+
+.header-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.header-logos img.main-logo {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.header-logos img.main-logo:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .header-logos {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .header-logos img.main-logo {
+    height: 60px;
+  }
+}

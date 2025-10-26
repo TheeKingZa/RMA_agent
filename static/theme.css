@@ -50,7 +50,7 @@ body{
 .hero-left h1{
   margin:0 0 8px 0;
   font-size:28px;
-  color:var(--rma-blue);
+  color: var(--rma-blue);
 }
 .agent-role{ color:var(--muted); margin:0 0 12px 0; font-weight:600; }
 .agent-info{ list-style:none; padding:0; margin:0 0 16px 0; color:var(--muted) }
@@ -134,3 +134,67 @@ h2{ margin-top:0; color:var(--rma-blue) }
 /* ---------- Utility classes for animations (start hidden) ---------- */
 .fade-in{ opacity:0; transform: translateY(24px); transition: all 600ms cubic-bezier(.2,.9,.2,1); }
 .fade-in.visible{ opacity:1; transform:none; }
+
+
+/* ======================================
+   Matla Life Plan Section Styling
+   ====================================== */
+#matla-life-plan {
+  background: linear-gradient(180deg, #ffffff, #f4f8ff);
+  border-left: 4px solid #004aad; /* Matla Blue */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+#matla-life-plan h2 {
+  color: #004aad;
+  margin-bottom: 20px;
+}
+
+#matla-life-plan p {
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.benefit-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 25px;
+}
+
+.benefit-card {
+  background: #ffffff;
+  border: 1px solid #dce3f0;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.benefit-card h3 {
+  color: #0057a0;
+  margin-bottom: 10px;
+}
+
+.benefit-card p {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  #matla-life-plan {
+    padding: 20px;
+  }
+}
+/* ======================================
+   End of Matla Life Plan Section Styling
+   ====================================== */
