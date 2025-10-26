@@ -198,3 +198,18 @@ h2{ margin-top:0; color:var(--rma-blue) }
 /* ======================================
    End of Matla Life Plan Section Styling
    ====================================== */
+
+   .faq-link {
+  background: transparent;
+  border: 1px solid rgba(10, 103, 163, 0.12);
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: var(--rma-blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+
+.faq-link:hover {
+  background: rgba(10, 103, 163, 0.06);
+}
