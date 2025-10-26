@@ -8,11 +8,17 @@
   font-weight: 600;
   padding: 10px 0;
   letter-spacing: 0.5px;
+  position: sticky;
+    top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
+/* Header Logos */
 .header-logos {
+  padding-top: 50px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   gap: 50px;
   padding: 20px;
