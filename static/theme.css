@@ -114,6 +114,27 @@ h2{ margin-top:0; color:var(--rma-blue) }
 .btn-outline{
   background:transparent; border:1px solid rgba(10,103,163,0.12); padding:10px 12px; border-radius:8px; color:var(--rma-blue);
 }
+/* footer contact info */
+.footer-info {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+.footer-info p {
+  margin: 4px 0;
+}
+
+footer a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
 
 /* footer small note */
 .small-note{ color:var(--muted); font-size:13px; margin-top:12px; }
